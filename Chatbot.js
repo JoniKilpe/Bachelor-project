@@ -1,5 +1,6 @@
 //importit - todnäk UI:sta ainakin jotain
 
+require("dotenv").config();
 
 //konstruktoriin parametrit
 
