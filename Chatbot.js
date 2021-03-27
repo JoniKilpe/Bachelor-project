@@ -12,22 +12,17 @@ class Chatbot {
 
         const AssistantV2 = require('ibm-watson/assistant/v2');
         const { IamAuthenticator } = require('ibm-watson/auth');
+        this.contextVariables = [];
 
         this.assistant = new AssistantV2({
             version: '2020-09-24',
             authenticator: new IamAuthenticator({
-                apikey: 'o3x3yQtjonJlDk_68JVqI7xrRwYZHKZdcpxyfTwTP0oZ', //otetaankohan nämä .env-tiedostosta?
+                apikey: process.env.WATSON_ASSISTANT_APIKEY,
             }),
-            url: 'https://api.eu-de.assistant.watson.cloud.ibm.com/instances/1b317c60-a115-4aa5-bffa-87bb218044d0', //otetaankohan nämä .env-tiedostosta?
+            url: process.env.WATSON_ASSISTANT_URL,
         });
 
-        this.assistantId = '7184ad88-be61-482d-90b7-e3fac855baa7'; //otetaankohan nämä .env-tiedostosta?
-    }
-
-    //Tuomon antama esimerkkifunktio. mahdollisesti toteutetaan eri tavalla
-    startChat(project, params, callback) {
-
-        //callback();
+        this.assistantId = process.env.WATSON_ASSISTANT_ID; //'7184ad88-be61-482d-90b7-e3fac855baa7'
     }
 
     //node sdk copypastella pääsee varmaan suhteellisen pitkälle
@@ -63,7 +58,6 @@ class Chatbot {
 
     }
 }
-
 //testaus
 
 var chatbot = new Chatbot();
