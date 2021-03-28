@@ -16,27 +16,38 @@ class Chatbot {
         });
         this.assistantId = process.env.WATSON_ASSISTANT_ID;
         this.contextVariables = {
-            "hyvat_arvot":true
-        }
+            "global": {
+                "system": {}
+            },
+            "skills": {
+                "main skill": {
+                    "user_defined": {
+                    }
+                }
+            }
+        };
         this.sessionId = null;
     }
 
     //TODO: promise
     sendMessage(input) {
-        this.assistant
-          .messageStateless({
-            assistantId: this.assistantId,
-            input: {
-              'message_type': 'text',
-              'text': input,
-            }
-          })
-          .then(res => {
-            this.processResponse(res.result);
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        return new Promise((resolve, reject) => {
+            this.assistant
+              .messageStateless({
+                assistantId: this.assistantId,
+                input: {
+                  'message_type': 'text',
+                  'text': input,
+                },
+                context: this.contextVariables
+              })
+              .then(res => {
+                this.processResponse(res.result);
+              })
+              .catch(err => {
+                console.log(err);
+              });
+        })
     }
 
     createSession() {
@@ -48,7 +59,7 @@ class Chatbot {
             })
             .then(res => {
                 this.sessionId = res.result.session_id;
-                console.log(res.result.session_id);
+                console.log("session created");
                 return resolve();
                 //console.log(JSON.stringify(res.result, null, 2));
             })
@@ -79,9 +90,13 @@ class Chatbot {
         return this.sessionId;
     }
 
+    printContextVariables() {
+        console.log(JSON.stringify(this.contextVariables));
+    }
+
     //TODO: testaa! pitäisi appendaa json-objektiin uuden avain-arvo -parin
     addContextVariable(property, value) {
-        this.contextVariables[property] = value;
+        this.contextVariables.skills["main skill"].user_defined[property] = value;
     }
 
     //TODO: promise
@@ -102,13 +117,18 @@ class Chatbot {
     }
 }
 
-// testaus - tällä hetkellä luo session, printtaa session_id:n, ja deletoi session
+// testaus - luo session -> lähettää viestin sekä context variablen -> poistaa session
 var chatbot = new Chatbot();
+chatbot.addContextVariable("arvot", 5);
 
-//ohjelma odottaa createSessionin loppuun viemistä
-//ennen deleteSessioniin jatkamista
 chatbot.createSession()
+    .then((result) => {
+        //watsonissa atm $arvot check #General_Greetings-nodessa,
+        //siksi viestinä "hello"
+        chatbot.sendMessage("hello");
+    })
     .then((result) => {
         chatbot.deleteSession();
     })
+
     //TODO: catch?
