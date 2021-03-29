@@ -1,0 +1,20 @@
+{
+  "name": "projekti-6.2-projektikurssi",
+  "version": "1.0.0",
+  "description": "watson assistant demo app",
+  "main": "Chatbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://joonas94s@bitbucket.org/joonas94s/projekti-6.2-projektikurssi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/joonas94s/projekti-6.2-projektikurssi#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ibm-watson": "^6.0.3"
+  }
+}
