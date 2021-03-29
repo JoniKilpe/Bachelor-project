@@ -91,17 +91,17 @@ class Chatbot {
     }
 
     printContextVariables() {
-        console.log(JSON.stringify(this.contextVariables));
+        console.log(this.contextVariables);
     }
 
-    //TODO: testaa! pitäisi appendaa json-objektiin uuden avain-arvo -parin
+    //lisää/muokkaa user_defined context variablen
     addContextVariable(property, value) {
         this.contextVariables.skills["main skill"].user_defined[property] = value;
     }
 
     //TODO: promise
     processResponse(response) {
-        //console.log(JSON.stringify(response, null, 2));
+        this.contextVariables = response.context;
         if (response.output.generic) {
           if (response.output.generic.length > 0) {
             if (response.output.generic[0].response_type === 'text') {
@@ -119,16 +119,17 @@ class Chatbot {
 
 // testaus - luo session -> lähettää viestin sekä context variablen -> poistaa session
 var chatbot = new Chatbot();
-chatbot.addContextVariable("arvot", 5);
+chatbot.addContextVariable("hyvat_arvot", true);
 
 chatbot.createSession()
     .then((result) => {
-        //watsonissa atm $arvot check #General_Greetings-nodessa,
-        //siksi viestinä "hello"
-        chatbot.sendMessage("hello");
+        //watsonissa Welcome-nodessa checki $hyvat_arvot == true
+        //siksi viestinä ""
+        chatbot.sendMessage("");
     })
     .then((result) => {
         chatbot.deleteSession();
-    })
+    });
+
 
     //TODO: catch?
