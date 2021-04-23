@@ -6,52 +6,72 @@ import {
     SESSION_SUCCESS,
     MESSAGE_FAIL,
     MESSAGE_SUCCESS,
+    ADD_FAIL,
+    ADD_SUCCESS,
 } from "../actions/types";
 
 
 //initial state
 const initialState = {
     messages: [],
+    context: {
+        "skills": {
+            "main skill": {
+                "user_defined": {
+                    "arvot": 1000
+                }
+            }
+        },
+        "global": {
+            "session_id": {}
+        }
+    },
 };
 
 //switch statement - update state
 export default (state = initialState, action) => {
     const { type, payload } = action;
-    let { messages } = state;
+    let { messages, context} = state;
 
     switch(type) {
         case INPUT_SUCCESS:
             messages = [...messages, { message: payload, type: "user" }];
             return {
-                ...state,
                 messages,
+                context,
             };
         case INPUT_FAIL:
-            return {
-                ...state,
-            };
+            return state;
+
         case SESSION_SUCCESS:
-            localStorage.setItem("session", payload["session_id"]);
+            context.global.session_id = payload["session_id"];
             return {
-                ...state,
+                messages,
+                context,
             };
         case SESSION_FAIL:
-            return {
-                ...state,
-            };
+            return state;
+
         case MESSAGE_SUCCESS:
-            messages = [...messages, { message: payload, type: "bot" }];
+            messages = [...messages, { message: payload.data.output.generic[0].text, type: "bot" }];
+            context = payload.data.context;
             return {
-                ...state,
                 messages,
+                context,
             };
         case MESSAGE_FAIL:
+            return state;
+
+        case ADD_FAIL:
+            return state;
+
+        case ADD_SUCCESS:
+            context.skills["main skill"].user_defined[payload.property] = payload.value;
             return {
-                ...state,
+                messages,
+                context,
             };
         default:
-            return {
-                ...state,
-            };
+            return state;
     }
 };

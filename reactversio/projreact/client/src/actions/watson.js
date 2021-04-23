@@ -6,10 +6,26 @@ import {
     SESSION_SUCCESS,
     MESSAGE_FAIL,
     MESSAGE_SUCCESS,
+    ADD_FAIL,
+    ADD_SUCCESS,
 } from "./types";
 
 //import axios
 import axios from "axios";
+
+//import store
+import store from "../store";
+
+export const addContextVariable = (context, property, value) => async (dispatch) => {
+    try {
+        dispatch({
+            type: ADD_SUCCESS,
+            payload: { context, property, value },
+         });
+    } catch (err) {
+        dispatch({ type: ADD_FAIL });
+    }
+};
 
 //function that handles user's message
 export const userMessage = (message) => async (dispatch) => {
@@ -31,14 +47,21 @@ export const createSession = () => async (dispatch) => {
 };
 
 //sends the message to the bot - API CALL
-export const sendMessage = (message) => async (dispatch) => {
+export const sendMessage = (message, context) => async (dispatch) => {
     try {
-        const body = { input: message };
-        const res = await axios.post("/api/watson/message", body);
-        //console.log(res);
+        const config = {
+            headers: {
+                'session_id': context.global.session_id
+            }
+        };
+        const body = {
+            input: message,
+            context: context,
+        };
+        const res = await axios.post("/api/watson/message", body, config);
         dispatch({
             type: MESSAGE_SUCCESS,
-            payload: res.data.output.generic[0].text,
+            payload: res
         });
     } catch (err) {
         dispatch({ type: MESSAGE_FAIL });

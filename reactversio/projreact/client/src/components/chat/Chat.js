@@ -4,7 +4,10 @@ import { connect } from "react-redux";
 //import action
 import { userMessage, sendMessage } from "../../actions/watson";
 
-const Chat = ({ chat, userMessage, sendMessage }) => {
+//import axios
+//import axios from "axios";
+
+const Chat = ({ chat, session, context, userMessage, sendMessage }) => {
     // handle user's message
     const [message, setMessage] = useState("");
     const endOfMessages = useRef(null);
@@ -21,7 +24,7 @@ const Chat = ({ chat, userMessage, sendMessage }) => {
         if (code === 13) {
             console.log(message);
             userMessage(message);
-            sendMessage(message);
+            sendMessage(message, context);
             setMessage("");
         }
     };
@@ -47,6 +50,8 @@ const Chat = ({ chat, userMessage, sendMessage }) => {
 };
 const mapStateToProps = (state) => ({
     chat: state.watson.messages,
+    session: state.watson.session,
+    context: state.watson.context,
 });
 
 export default connect(mapStateToProps, { userMessage, sendMessage })(Chat);
