@@ -2,12 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 
 //import action
-import { userMessage, sendMessage } from "../../actions/watson";
+import { addContextVariable, userMessage, sendMessage } from "../../actions/watson";
 
-//import axios
-//import axios from "axios";
-
-const Chat = ({ chat, session, context, userMessage, sendMessage }) => {
+const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) => {
     // handle user's message
     const [message, setMessage] = useState("");
     const endOfMessages = useRef(null);
@@ -16,6 +13,9 @@ const Chat = ({ chat, session, context, userMessage, sendMessage }) => {
         endOfMessages.current.scrollIntoView({ behavior: "smooth" });
     }
     useEffect(scrollToBottom, [chat]);
+
+    //test variable
+    //addContextVariable(context, "arvot", 2000);
 
     // function that handles user submission
     const handleClick = async (e) => {
@@ -50,8 +50,7 @@ const Chat = ({ chat, session, context, userMessage, sendMessage }) => {
 };
 const mapStateToProps = (state) => ({
     chat: state.watson.messages,
-    session: state.watson.session,
     context: state.watson.context,
 });
 
-export default connect(mapStateToProps, { userMessage, sendMessage })(Chat);
+export default connect(mapStateToProps, { addContextVariable, userMessage, sendMessage })(Chat);

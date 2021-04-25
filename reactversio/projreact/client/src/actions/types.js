@@ -6,3 +6,5 @@ export const MESSAGE_SUCCESS = "MESSAGE_SUCCESS";
 export const MESSAGE_FAIL = "MESSAGE_FAIL";
 export const ADD_FAIL = "ADD_FAIL";
 export const ADD_SUCCESS = "ADD_SUCCESS";
+export const TOGGLE_SUCCESS = "TOGGLE_SUCCESS";
+export const TOGGLE_FAIL = "TOGGLE_FAIL";

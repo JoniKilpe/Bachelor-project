@@ -13,9 +13,7 @@ import {
 //import axios
 import axios from "axios";
 
-//import store
-import store from "../store";
-
+//adds or updates a user defined context variable
 export const addContextVariable = (context, property, value) => async (dispatch) => {
     try {
         dispatch({
