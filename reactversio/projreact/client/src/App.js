@@ -24,8 +24,9 @@ const App = ({chatState, toggleChat}) => {
   return (
       <div className="container">
         <ChatButton />
-        <Chat />
+        {chatState && <Chat />}
       </div>
+
   );
 };
 

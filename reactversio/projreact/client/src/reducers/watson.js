@@ -8,6 +8,8 @@ import {
     MESSAGE_SUCCESS,
     ADD_FAIL,
     ADD_SUCCESS,
+    SESSION_DEL_FAIL,
+    SESSION_DEL_SUCCESS,
 } from "../actions/types";
 
 
@@ -67,6 +69,15 @@ export default (state = initialState, action) => {
 
         case ADD_SUCCESS:
             context.skills["main skill"].user_defined[payload.property] = payload.value;
+            return {
+                messages,
+                context,
+            };
+        case SESSION_DEL_FAIL:
+            return state;
+
+        case SESSION_DEL_SUCCESS:
+            context.global.session_id = null;
             return {
                 messages,
                 context,

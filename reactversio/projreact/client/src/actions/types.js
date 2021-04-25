@@ -8,3 +8,5 @@ export const ADD_FAIL = "ADD_FAIL";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const TOGGLE_SUCCESS = "TOGGLE_SUCCESS";
 export const TOGGLE_FAIL = "TOGGLE_FAIL";
+export const SESSION_DEL_SUCCESS = "SESSION_DEL_SUCCESS";
+export const SESSION_DEL_FAIL = "SESSION_DEL_FAIL";

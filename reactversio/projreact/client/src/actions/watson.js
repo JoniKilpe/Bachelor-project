@@ -8,6 +8,8 @@ import {
     MESSAGE_SUCCESS,
     ADD_FAIL,
     ADD_SUCCESS,
+    SESSION_DEL_SUCCESS,
+    SESSION_DEL_FAIL,
 } from "./types";
 
 //import axios
@@ -43,6 +45,17 @@ export const createSession = () => async (dispatch) => {
         dispatch({ type: SESSION_FAIL });
     }
 };
+
+//deletes an ongoing session - API CALL
+export const deleteSession = (context) => async (dispatch) => {
+    try {
+        const body = { sessionId: context.global.session_id };
+        const res = await axios.post("api/watson/deletesession", body);
+        dispatch({ type: SESSION_DEL_SUCCESS });
+    } catch (err) {
+        dispatch({ type: SESSION_DEL_FAIL });
+    }
+}
 
 //sends the message to the bot - API CALL
 export const sendMessage = (message, context) => async (dispatch) => {

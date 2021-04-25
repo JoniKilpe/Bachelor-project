@@ -27,6 +27,18 @@ router.get("/session", async (req,res) => {
     }
 });
 
+router.post("/deletesession", async (req, res) => {
+    try {
+        const result = await assistant.deleteSession({
+            assistantId: process.env.WATSON_ASSISTANT_ID,
+            sessionId: req.body.sessionId,
+        });
+    } catch (err) {
+        res.send("There was an error processing your request.");
+        console.log(err);
+    }
+})
+
 //handle messages
 //POST /api/watson/message
 router.post("/message", async (req,res) => {
