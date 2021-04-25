@@ -14,9 +14,6 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
     }
     useEffect(scrollToBottom, [chat]);
 
-    //test variable
-    //addContextVariable(context, "arvot", 2000);
-
     // function that handles user submission
     const handleClick = async (e) => {
         const code = e.keyCode || e.which;

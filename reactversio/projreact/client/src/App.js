@@ -3,7 +3,7 @@ import './App.css';
 
 
 //import redux components
-import { Provider, useSelector, useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import store from "./store";
 
 //import chat component
@@ -15,20 +15,17 @@ import { createSession } from "./actions/watson";
 import { toggleChat } from "./actions/showChat";
 
 const App = ({chatState, toggleChat}) => {
+
+    // runs once when app first gets rendered
     useEffect(() => {
         store.dispatch(createSession());
-    });
-    //const chatState = useSelector(state => state.showChat);
+    }, []);
 
-    const dispatch = useDispatch();
   return (
-    //<Provider store={store}>
       <div className="container">
-        {/*insert chat component here*/}
         <ChatButton />
         <Chat />
       </div>
-    //</Provider>
   );
 };
 
@@ -37,4 +34,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { toggleChat })(App);
-//export default App;

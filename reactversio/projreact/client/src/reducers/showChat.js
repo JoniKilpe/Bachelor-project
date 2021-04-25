@@ -7,7 +7,6 @@ import {
 const initialState = false;
 
 export default (state = initialState, action) => {
-    //const { type, payload } = action;
 
     switch(action.type) {
         case TOGGLE_SUCCESS:
