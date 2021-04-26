@@ -8,7 +8,7 @@ import { toggleChat } from "../../actions/showChat";
 const ChatButton = ({ chatState, toggleChat }) => {
 
      return (
-         <button onClick={() => toggleChat(chatState)}>nappi</button>
+         <button class="chatButton" onClick={() => toggleChat(chatState)}>nappi</button>
      );
 };
 
