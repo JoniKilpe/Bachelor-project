@@ -27,7 +27,7 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
     };
     return (
         <div className="chat">
-            <h1>Pankinjohtajabossman</h1>
+            <h1>Bank Manager</h1>
             {/*handle messages*/}
             <div class="historyContainer">
             {chat.length === 0

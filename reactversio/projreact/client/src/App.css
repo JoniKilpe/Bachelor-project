@@ -9,16 +9,24 @@
  display: inline-block;
  font-size: 16px;
  opacity:0.5;
- position: absolute;
- right: 46%;
- bottom: 7%;
+ position: fixed;
+ left: 30px;
+ bottom: 25px;
 }
+
+h1 {
+  font-family: "Helvetica Neue";
+}
+
 button:hover{
   opacity:1;
 }
 
 .container{
   text-align: center;
+  position: fixed;
+  bottom: 100px;
+  left: 30px;
 }
 
 input{
@@ -62,6 +70,8 @@ input{
 .chat{
   display: inline-block;
   max-width: 400px;
+  background-color: #77acf1;
+  border-radius: 10px 10px 10px 10px;
 }
 .historyContainer{
   height:600px;
