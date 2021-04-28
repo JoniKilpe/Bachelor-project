@@ -77,7 +77,7 @@ export default (state = initialState, action) => {
             return state;
 
         case SESSION_DEL_SUCCESS:
-            context.global.session_id = null;
+            context.global.session_id = "";
             return {
                 messages,
                 context,

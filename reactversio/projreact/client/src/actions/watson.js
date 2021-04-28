@@ -50,7 +50,7 @@ export const createSession = () => async (dispatch) => {
 export const deleteSession = (context) => async (dispatch) => {
     try {
         const body = { sessionId: context.global.session_id };
-        const res = await axios.post("/api/watson/deletesession", body);
+        const res = await axios.delete("/api/watson/deletesession", body);
         dispatch({ type: SESSION_DEL_SUCCESS });
     } catch (err) {
         dispatch({ type: SESSION_DEL_FAIL });
