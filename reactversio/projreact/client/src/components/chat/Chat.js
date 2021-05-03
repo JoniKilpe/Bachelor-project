@@ -22,12 +22,16 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
             sendInput();
         }
     };
+
     const sendInput = async () => {
-        console.log(message);
-        userMessage(message);
-        sendMessage(message, context);
+        if (message.trim() != "") {
+            console.log(message);
+            userMessage(message);
+            sendMessage(message, context);
+        }
         setMessage("");
     };
+
     return (
         <div className="chat">
             <h1>Bank Manager</h1>

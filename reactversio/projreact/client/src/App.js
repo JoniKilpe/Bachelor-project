@@ -25,7 +25,6 @@ const App = ({chatState, toggleChat}) => {
       <div className="container">
         <ChatButton />
         {chatState && <Chat />}
-        <button class="cleartest" onClick={() => clearChat()}>clear</button>
       </div>
 
   );
