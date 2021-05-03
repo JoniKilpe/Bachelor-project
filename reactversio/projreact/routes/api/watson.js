@@ -27,12 +27,15 @@ router.get("/session", async (req,res) => {
     }
 });
 
-router.post("/deletesession", async (req, res) => {
+//deletes session on IBM's side
+//DELETE api/watson/deletesession
+router.delete("/deletesession", async (req, res) => {
     try {
         const result = await assistant.deleteSession({
             assistantId: process.env.WATSON_ASSISTANT_ID,
             sessionId: req.body.sessionId,
         });
+        res.json(result["statusText"]);
     } catch (err) {
         res.send("There was an error processing your request.");
         console.log(err);
