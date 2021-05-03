@@ -10,6 +10,7 @@ import {
     ADD_SUCCESS,
     SESSION_DEL_FAIL,
     SESSION_DEL_SUCCESS,
+    CLEAR_CHAT,
 } from "../actions/types";
 
 
@@ -77,11 +78,19 @@ export default (state = initialState, action) => {
             return state;
 
         case SESSION_DEL_SUCCESS:
-            context.global.session_id = "";
+            context.global.session_id = ""; //null?
             return {
                 messages,
                 context,
             };
+
+        case CLEAR_CHAT:
+            messages = [];
+            return {
+                messages,
+                context,
+            };
+
         default:
             return state;
     }

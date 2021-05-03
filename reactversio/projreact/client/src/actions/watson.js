@@ -10,10 +10,16 @@ import {
     ADD_SUCCESS,
     SESSION_DEL_SUCCESS,
     SESSION_DEL_FAIL,
+    CLEAR_CHAT,
 } from "./types";
 
 //import axios
 import axios from "axios";
+
+//clears chat's message history
+export const clearChat = () => async (dispatch) => {
+    dispatch({ type: CLEAR_CHAT });
+};
 
 //adds or updates a user defined context variable
 export const addContextVariable = (context, property, value) => async (dispatch) => {
