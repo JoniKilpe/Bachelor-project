@@ -1,5 +1,5 @@
 .chatButton {
- background-color: #1597bb; /* napin väri */
+ background-color: #51c4d3; /* napin väri */
  border: none;
  color: white;
  padding: 10px 24px;
@@ -8,18 +8,53 @@
  text-decoration: none;
  display: inline-block;
  font-size: 16px;
- opacity:0.5;
+ transition-duration: 0.4s;
  position: fixed;
  left: 30px;
  bottom: 25px;
 }
 
-h1 {
-  font-family: "Helvetica Neue";
+h1{
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  color: #d49d42;
 }
 
-button:hover{
+.chatButton:hover{
   opacity:1;
+  background-color: #1687a7;
+}
+
+.testi {
+  background-color: #845ec2;
+}
+
+.sendButton {
+  display: inline-block;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #51c4d3;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px #1687a7;
+    left: 265px;
+    bottom: 110px;
+    position: fixed;
+}
+
+.sendButton:hover {
+  background-color: #1687a7;
+}
+
+.sendButton:active {
+  background-color: #1687a7;
+  box-shadow: 0 5px #1687a7;
+  transform: translateY(2px);
 }
 
 .container{
@@ -30,14 +65,17 @@ button:hover{
 }
 
 input{
-  border: 0;
-  border-bottom: 1px solid black;
+  border: 5px solid #301b3f;
+  border-radius: 10px;
+  background-color: #301b3f;
+  margin: 5px;
   height: 20px;
-  width: 400px;
+  width: 270px;
   outline: none;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 15px;
+  color: white;
+
 }
 
 
@@ -51,6 +89,7 @@ input{
   padding: 4px;
   padding-left: 20px;
   max-width: 300px;
+  font-size: 12px;
 }
 
 .user{
@@ -65,22 +104,23 @@ input{
   max-width: 300px;
   margin-left: auto;
   margin-right: 0;
+  font-size: 12px;
 }
 
 .chat{
   display: inline-block;
-  max-width: 400px;
-  background-color: #77acf1;
+  max-width: 300px;
+  background-color: #301b3f;
   border-radius: 10px 10px 10px 10px;
 }
 .historyContainer{
-  height:600px;
+  height:400px;
   overflow: scroll;
   overflow-x: hidden;
+  background-color: white;
+  padding-bottom: 15px;
+  padding-top: 15px;
 }
 .historyContainer::-webkit-scrollbar {
     display: none;
-}
-h1{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

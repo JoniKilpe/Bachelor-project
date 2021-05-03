@@ -19,11 +19,14 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
         const code = e.keyCode || e.which;
 
         if (code === 13) {
-            console.log(message);
-            userMessage(message);
-            sendMessage(message, context);
-            setMessage("");
+            sendInput();
         }
+    };
+    const sendInput = async () => {
+        console.log(message);
+        userMessage(message);
+        sendMessage(message, context);
+        setMessage("");
     };
     return (
         <div className="chat">
@@ -42,6 +45,10 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
                 onKeyPress={handleClick}
                 value={message}
             ></input>
+            <button
+                className="sendButton"
+                onClick={sendInput}
+            >send</button>
         </div>
     );
 };
