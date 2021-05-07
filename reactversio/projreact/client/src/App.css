@@ -14,6 +14,12 @@
  bottom: 25px;
 }
 
+.bankManager {
+    position: fixed;
+    left: 70px;
+    bottom: 572px;
+}
+
 h1{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -78,7 +84,6 @@ input{
 
 }
 
-
 .bot{
   background-color: rgb(152, 85, 212);
   color: white;
@@ -86,14 +91,15 @@ input{
   border-radius: 10px;
   text-align: left;
   margin-top: 10px;
+  margin-left: 5px;
   padding: 4px;
   padding-left: 20px;
-  max-width: 300px;
+  max-width: 150px;
   font-size: 12px;
 }
 
 .user{
-  background-color: rgb(0, 180, 160);
+  background-color: #51c4d3;
   color: white;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-radius: 10px;
@@ -101,9 +107,9 @@ input{
   margin-top: 10px;
   padding: 4px;
   padding-right: 20px;
-  max-width: 300px;
+  max-width: 150px;
   margin-left: auto;
-  margin-right: 0;
+  margin-right: 5px;
   font-size: 12px;
 }
 
@@ -113,6 +119,7 @@ input{
   background-color: #301b3f;
   border-radius: 10px 10px 10px 10px;
 }
+
 .historyContainer{
   height:400px;
   overflow: scroll;
@@ -121,6 +128,7 @@ input{
   padding-bottom: 15px;
   padding-top: 15px;
 }
+
 .historyContainer::-webkit-scrollbar {
     display: none;
 }

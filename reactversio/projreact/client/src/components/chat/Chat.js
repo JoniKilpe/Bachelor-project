@@ -52,7 +52,8 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
             <button
                 className="sendButton"
                 onClick={sendInput}
-            >send</button>
+            >Send</button>
+          <p className="bankManager">🤵</p>
         </div>
     );
 };
