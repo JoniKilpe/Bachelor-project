@@ -24,7 +24,7 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
     };
 
     const sendInput = async () => {
-        if (message.trim() != "") {
+        if (message.trim() !== "") {
             console.log(message);
             userMessage(message);
             sendMessage(message, context);

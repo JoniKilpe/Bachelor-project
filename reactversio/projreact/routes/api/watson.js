@@ -19,7 +19,7 @@ router.get("/session", async (req,res) => {
     try {
         const session = await assistant.createSession({
             assistantId: process.env.WATSON_ASSISTANT_ID
-        })
+        });
         res.json(session["result"]);
     } catch (err) {
         res.send("There was an error processing your request.");
@@ -40,7 +40,7 @@ router.delete("/deletesession", async (req, res) => {
         res.send("There was an error processing your request.");
         console.log(err);
     }
-})
+});
 
 //handle messages
 //POST /api/watson/message
@@ -63,6 +63,18 @@ router.post("/message", async (req,res) => {
     }
 });
 
+
+//handle watson webhook example
+/*
+router.post("/hook", async (req,res) => {
+    try {
+        res.json(calcValues(req.header.eac, req.header.teac));
+    } catch (err) {
+        res.send("error");
+        console.log(err);
+    }
+});
+*/
 
 //export routes
 module.exports = router;

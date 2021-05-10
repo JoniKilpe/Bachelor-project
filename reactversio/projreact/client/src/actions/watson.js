@@ -57,8 +57,10 @@ export const deleteSession = (context) => async (dispatch) => {
     try {
         const body = { sessionId: context.global.session_id };
         const res = await axios.delete("/api/watson/deletesession", body);
+        console.log(res);
         dispatch({ type: SESSION_DEL_SUCCESS });
     } catch (err) {
+        console.log(err);
         dispatch({ type: SESSION_DEL_FAIL });
     }
 }
