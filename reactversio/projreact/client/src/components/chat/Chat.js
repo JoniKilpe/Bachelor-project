@@ -5,16 +5,18 @@ import { connect } from "react-redux";
 import { addContextVariable, userMessage, sendMessage } from "../../actions/watson";
 
 const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) => {
+
     // handle user's message
     const [message, setMessage] = useState("");
     const endOfMessages = useRef(null);
 
+    //scrolls to bottom automatically
     const scrollToBottom = () => {
         endOfMessages.current.scrollIntoView({ behavior: "smooth" });
     }
     useEffect(scrollToBottom, [chat]);
 
-    // function that handles user submission
+    // function that handles enter press to send message
     const handleClick = async (e) => {
         const code = e.keyCode || e.which;
 
@@ -22,9 +24,9 @@ const Chat = ({ chat, context, addContextVariable, userMessage, sendMessage }) =
             sendInput();
         }
     };
-
+    // function that sends the message
     const sendInput = async () => {
-        if (message.trim() !== "") {
+        if (message.trim() !== "") { //only whitespace won't be sent
             console.log(message);
             userMessage(message);
             sendMessage(message, context);

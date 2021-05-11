@@ -11,15 +11,22 @@ import Chat from "./components/chat/Chat";
 import ChatButton from "./components/chat/ChatButton";
 
 //import action
-import { createSession } from "./actions/watson";
+import { createSession, sendMessage } from "./actions/watson";
 import { toggleChat } from "./actions/showChat";
 
-const App = ({chatState, toggleChat}) => {
+const App = ({context, chatState, toggleChat}) => {
 
     // runs once when app first gets rendered
     useEffect(() => {
         store.dispatch(createSession());
     }, []);
+
+    //runs when session_id gets updated. initiates Welcome-node from Watson
+    useEffect(() => {
+        if (context.global.session_id !== null) {
+            store.dispatch(sendMessage("", context));
+        }
+    }, [context.global.session_id]);
 
   return (
       <div className="container">
@@ -31,7 +38,8 @@ const App = ({chatState, toggleChat}) => {
 };
 
 const mapStateToProps = (state) => ({
-    chatState: state.showChat
+    chatState: state.showChat,
+    context: state.watson.context,
 });
 
-export default connect(mapStateToProps, { toggleChat })(App);
+export default connect(mapStateToProps, { sendMessage, toggleChat })(App);

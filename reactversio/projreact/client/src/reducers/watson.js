@@ -21,12 +21,11 @@ const initialState = {
         "skills": {
             "main skill": {
                 "user_defined": {
-                    "arvot": 1000
                 }
             }
         },
         "global": {
-            "session_id": {}
+            "session_id": null
         }
     },
 };
